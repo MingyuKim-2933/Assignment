@@ -8,7 +8,7 @@
  * 오직 자신이 그 턴에 최종적으로 도착한 위치의 아이템만 획득 할 수 있다.
  */
 
-// 몬스터의 기본 이동 동작을 따른다. (9가지 경우의 수 이동)
+ // 몬스터의 기본 이동 동작을 따른다. (9가지 경우의 수 이동)
 class Zombie : public Monster
 {
 public:
@@ -28,9 +28,36 @@ public:
 		: Monster(n, i, x, y) {}
 	~Vampire() { cout << " Vampire"; }
 
-	void move(vector<vector<int> > &map, int maxx, int maxy)
+	void move(vector<vector<int> >& map, int maxx, int maxy)
 	{
-	
+		if (nSleep > 0)
+		{
+			nSleep--;
+			return;
+		}
+
+		int dir = rand() % 4;
+		int dx = 0;
+		int dy = 0;
+
+		switch (dir)
+		{
+		case 0: dy = -1; break;
+		case 1: dy = 1; break;
+		case 2: dx = -1;  break;
+		case 3: dx = 1; break;
+		}
+
+		Point vector(dx, dy);
+		q = p;
+		p = p + vector;
+
+		clip(maxx, maxy);
+
+		dist++;
+		total++;
+
+		eat(map, true);
 	}
 };
 
@@ -42,9 +69,27 @@ public:
 		: Monster(n, i, x, y) {}
 	~KGhost() { cout << " KGhost"; }
 
-	void move(vector<vector<int> > &map, int maxx, int maxy)
+	void move(vector<vector<int> >& map, int maxx, int maxy)
 	{
-		
+		if (nSleep > 0)
+		{
+			nSleep--;
+			return;
+		}
+
+		int dx = rand() % maxx;
+		int dy = rand() % maxy;
+
+		Point position(dx, dy);
+		q = p;
+		p = position;
+
+		clip(maxx, maxy);
+
+		dist++;
+		total++;
+
+		eat(map, true);
 	}
 };
 
@@ -61,9 +106,35 @@ public:
 		: Monster(n, i, x, y), bHori(bH) {}
 	~Jiangshi() { cout << " Jiangshi"; }
 
-	void move(vector<vector<int> > &map, int maxx, int maxy)
+	void move(vector<vector<int> >& map, int maxx, int maxy)
 	{
-		
+		if (nSleep > 0)
+		{
+			nSleep--;
+			return;
+		}
+
+		int dir = rand() % 4;
+		int dist = 0;
+
+		switch (dir)
+		{
+		case 0: dist = -2; break;
+		case 1: dist = -1; break;
+		case 2: dist = 1;  break;
+		case 3: dist = 2; break;
+		}
+
+		Point vector = bHori ? Point(dist, 0) : Point(0, dist);
+		q = p;
+		p = p + vector;
+
+		clip(maxx, maxy);
+
+		dist++;
+		total++;
+
+		eat(map, true);
 	}
 };
 

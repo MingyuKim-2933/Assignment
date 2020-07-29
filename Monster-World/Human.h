@@ -27,8 +27,38 @@ public:
 	~Human() { cout << " Player"; }
 
 	// 키보드 입력이 있는지 감지하여 사용자를 움직여준다. 플레이어의 경우에는 쉬지않고 계속 움직일 수 있다.
-	void move(vector<vector<int> > &map, int maxx, int maxy)
+	void move(vector<vector<int> >& map, int maxx, int maxy)
 	{
+		if (_kbhit())
+		{
+			int key = _getch();
+
+			int dx = 0;
+			int dy = 0;
+
+			switch (key)
+			{
+			case Left: dx = -1;
+				break;
+			case Right: dx = 1;
+				break;
+			case Up: dy = -1;
+				break;
+			case Down: dy = 1;
+				break;
+			}
+
+			Point vector = Point(dx, dy);
+			q = p;
+			p = p + vector;
+
+			clip(maxx, maxy);
+
+			dist++;
+			total++;			
+
+			eat(map, false);
+		}
 	}
 };
 
