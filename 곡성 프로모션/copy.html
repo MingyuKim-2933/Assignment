@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function (){
+
+			$('a').hover(function (){
+				$(this).css({
+					background: 'white',
+					color: 'black'
+				});
+			}, function (){
+
+				$(this).css ({
+					background: '',
+					color: ''
+				});
+			});
+		});
+
+	
+		var book = {
+ 		이름: '곡성 홈페이지',
+ 		지은이: '김민규',
+ 		펴낸이: '김민규',
+ 		펴낸곳: '동국대학교 경주캠퍼스',
+ 		책임편집: '김민규',
+ 		기획: '임재걸 교수님',
+ 		편집: '김민규',
+ 		디자인: '김민규',
+	};
+
+		for (var i in book){
+		alert(i + ':' + book[i]);
+	}
+window.opener='Self';
+				window.open('','_parent','');
+				window.close();
+	</script>
+	<style type="text/css">
+
+	div {
+		align-content: center;
+	
+	}
+	div > h1  {
+		text-align: center;
+	}
+	a:link { color: white; text-decoration: none;}
+	a:visited { color: white; text-decoration: none;}
+
+	</style>
+	
+</head>
+<body bgcolor="black">
+
+<div><h1><a href="index1.html">원래 화면으로 돌아가기</a></h1></div>
+
+</body>
+</html>

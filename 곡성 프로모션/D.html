@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript">
+		
+
+		function next(){
+			if (confirm("곡성에 대한 스포일러를 포함하고 있습니다. 괜찮으십니까?")) {
+
+				location.href="E.html";
+			}else{
+				alert('이전 창으로 이동합니다.')
+
+				window.opener='Self';
+				window.open('','_parent','');
+				window.close();
+			}
+		}
+
+		</script>
+
+
+
+
+</head>
+<body>
+<a onclick="next()">곡성 해석 보기</a>
+
+</body>
+</html>
