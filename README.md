@@ -1,4 +1,7 @@
 # Monster-World
+
+멀티미디어 고급 프로그래밍 과제
+
 C++을 활용하여 간단한 Console Game 구현
 
 사용 언어: C++
