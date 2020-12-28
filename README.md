@@ -1,4 +1,4 @@
-# Tic-Tac-Toe-Reinforcement-learning
+# Tic-Tac-Toe-Reinforcement-learning-Assignment
 
 3학년 1학기
 
