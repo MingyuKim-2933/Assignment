@@ -1,9 +1,8 @@
-# Tic-Tac-Toe-Reinforcement-learning-Assignment
+# Tic-Tac-Toe-Reinforcement-learning(Assignment)
 
 3학년 1학기
 
 자율사물지능 기말과제
-
 
 사용언어 : ```Python```
 
