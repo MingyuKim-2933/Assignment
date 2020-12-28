@@ -12,7 +12,6 @@
 
 int DATA_SEND_RECV(int, char*);
 
-
 int main(int argc, char* argv[])
 {
     char user[12];
