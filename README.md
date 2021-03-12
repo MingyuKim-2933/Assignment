@@ -1,4 +1,4 @@
-# Socket-Programing(
+# Socket-Programing(Assignment)
 
 3학년 2학기 네트워크 과목 소켓 프로그래밍 과제
 
