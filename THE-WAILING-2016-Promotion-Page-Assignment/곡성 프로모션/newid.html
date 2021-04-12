@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.js"></script>
+
+	<script type="text/javascript">
+
+		function buttonClick() {
+			alert('회원가입이 완료되었습니다.');
+		}
+		function ties()	{
+	var ties = [
+ 	'원숭이', '닭', '개', '돼지', '쥐', '소', '범', '토끼',	'용', '뱀', '말', '양'];
+
+	var input = parseInt(prompt('태어난 연도를 입력하시오.', 'ex)1995'));
+	
+	alert(ties[input % 12]);	
+   }
+
+   function check_id() {
+ var value = $('input#id').val();
+ if (value.replace(/[a-z+\d]/g, '').length == 0) 
+ {
+ alert('적절합니다.');
+ } 
+ else {
+ alert('영문과 숫자만 입력하시오.');
+ }
+};
+</script>
+</head>
+
+<body>
+<newid>
+<form>
+	<fieldset>
+		<legend>회원가입</legend>
+		<table>
+			<tr>
+				<td>이름:&nbsp;<input type="box" value=""></input></td>
+			</tr>
+			<tr>
+				<td>아이디(영문+숫자):&nbsp;<input type="text" name="id"  id="id" value="" >
+			
+			<input type="button" value="확인하기" onclick="check_id();" />
+			</td>	
+			</tr>
+			<tr>
+				<td>비밀번호:&nbsp;<input type="password" value=""></input></td>
+			</tr>
+			<tr>
+				<td>비밀번호 재확인:&nbsp;<input type="password" value=""></input></td>
+			</tr>
+			<tr>
+				<td>성별:&nbsp;<input type="radio" value="radio">남</input><input type="radio" value="radio">여</input></td>
+			</tr>
+			<tr>
+				<td>생년월일:&nbsp;<input type="date"></input></td>
+			</tr>
+			<tr>
+			<td>띠:&nbsp;<input type="text"></input><button onclick="ties()">띠 검색하기</button></td>
+			
+		</tr>
+			<tr>
+				<td>휴대전화번호:&nbsp;<input type="box"></input></td>
+			</tr>
+		</table>
+
+
+	</fieldset>
+<br>
+</form>
+<a href="complete.html"><button onclick="buttonClick()">회원가입</button></a>
+</newid>
+</body>
+</html>
