@@ -4,7 +4,7 @@ import datetime
 
 
 score_list = []
-user_input_list = ["Name:", "Korean:", "English:", "Math:"]
+user_input_list = ["Name:", "Flavor:", "Hygiene:", "Price:"]
 
 MENU_RETRIEVE = 1
 MENU_ADD = 2
@@ -15,9 +15,9 @@ MENU_LOAD = 6
 MENU_QUIT = 7
 
 INDEX_NAME = 0
-INDEX_KOR = 1
-INDEX_ENG = 2
-INDEX_MATH = 3
+INDEX_FLAVOR = 1
+INDEX_HYGIENE = 2
+INDEX_PRICE = 3
 INDEX_TIME = 4
 
 
@@ -34,15 +34,16 @@ def print_menu():
 
 
 def print_list():
-    korean_total, english_total, math_total = calculate_total()
-    korean_average, english_average, math_average = calculate_average()
-    print("INDEX                 NAME  KOR  ENG  MAT                        TIME")
-    print("*********************************************************************")
+    custom_sort_list()
+    flavor_total, hygiene_total, price_total = calculate_total()
+    flavor_average, hygiene_average, price_average = calculate_average()
+    print("INDEX                 NAME  FLAVOR  HYGIENE  PRICE                    ADD TIME")
+    print("******************************************************************************")
     for j in range(len(score_list)):
-        print((str(j+1)+".").ljust(5), " ", str(score_list[j][INDEX_NAME]).rjust(20), " ", str(score_list[j][INDEX_KOR]).rjust(4), " ",  str(score_list[j][INDEX_ENG]).rjust(4), " ", str(score_list[j][INDEX_MATH]).rjust(4), " ", str(score_list[j][INDEX_TIME]).rjust(27), sep="")
-    print("*********************************************************************")
-    print("TOTAL".ljust(26), str(korean_total).rjust(4), str(english_total).rjust(4), str(math_total).rjust(4))
-    print("AVG.".ljust(27), str(round(korean_average, 1)).rjust(4), str(round(english_average, 1)).rjust(4), str(round(math_average, 1)).rjust(4))
+        print((str(j+1)+".").ljust(5), " ", str(score_list[j][INDEX_NAME]).rjust(20), " ", str(score_list[j][INDEX_FLAVOR]).rjust(7), " ",  str(score_list[j][INDEX_HYGIENE]).rjust(8), " ", str(score_list[j][INDEX_PRICE]).rjust(6), " ", str(score_list[j][INDEX_TIME]).rjust(27), sep="")
+    print("******************************************************************************")
+    print("TOTAL".ljust(26), str(flavor_total).rjust(7), str(hygiene_total).rjust(8), str(price_total).rjust(6))
+    print("AVG.".ljust(27), str(round(flavor_average, 1)).rjust(7), str(round(hygiene_average, 1)).rjust(8), str(round(price_average, 1)).rjust(6))
     print()
     print("TOPS: 1", end='')
 
@@ -54,36 +55,74 @@ def print_list():
 def sort_list():
     global score_list
 
-    score_list.sort(key=lambda x: x[INDEX_KOR] + x[INDEX_ENG] + x[INDEX_MATH], reverse=True)
+    score_list.sort(key=lambda x: x[1] + x[2] + x[3], reverse=True)
+
+
+def custom_sort_list():
+    global score_list
+
+    print("정렬 기준을 선택하세요.")
+    print("1.TOTAL SCORE 2. FLAVOR 3. HYGIENE 4.PRICE 5.ADD TIME")
+    while True:
+        try:
+            sort_num = int(input(">"))
+
+            if sort_num == 1:
+                score_list.sort(key=lambda x: x[INDEX_FLAVOR] + x[INDEX_HYGIENE] + x[INDEX_PRICE], reverse=True)
+                break
+
+            elif sort_num == 2:
+                score_list.sort(key=lambda x: x[INDEX_FLAVOR], reverse=True)
+                break
+
+            elif sort_num == 3:
+                score_list.sort(key=lambda x: x[INDEX_HYGIENE], reverse=True)
+                break
+
+            elif sort_num == 4:
+                score_list.sort(key=lambda x: x[INDEX_PRICE], reverse=True)
+                break
+
+            elif sort_num == 5:
+                score_list.sort(key=lambda x: x[INDEX_TIME], reverse=True)
+                break
+
+            else:
+                print("The input has errors.")
+                continue
+
+        except ValueError:
+            print("The input has errors.")
+            continue
 
 
 def calculate_total():
-    korean_total = 0
-    english_total = 0
-    math_total = 0
+    flavor_total = 0
+    hygiene_total = 0
+    price_total = 0
 
     for j in range(len(score_list)):
-        korean_total += score_list[j][INDEX_KOR]
-        english_total += score_list[j][INDEX_ENG]
-        math_total += score_list[j][INDEX_MATH]
+        flavor_total += score_list[j][INDEX_FLAVOR]
+        hygiene_total += score_list[j][INDEX_HYGIENE]
+        price_total += score_list[j][INDEX_PRICE]
 
-    return korean_total, english_total, math_total
+    return flavor_total, hygiene_total, price_total
 
 
 def calculate_average():
-    korean_average, english_average, math_average = calculate_total()
+    flavor_average, hygiene_average, price_average = calculate_total()
 
-    korean_average = korean_average / len(score_list)
-    english_average = english_average / len(score_list)
-    math_average = math_average / len(score_list)
+    flavor_average = flavor_average / len(score_list)
+    hygiene_average = hygiene_average / len(score_list)
+    price_average = price_average / len(score_list)
 
-    return korean_average, english_average, math_average
+    return flavor_average, hygiene_average, price_average
 
 
 def check_top():
     top_count = 1
     for j in range(1, len(score_list)):
-        if score_list[j][INDEX_KOR] + score_list[j][INDEX_ENG] + score_list[j][INDEX_MATH] == score_list[j-1][INDEX_KOR] + score_list[j-1][INDEX_ENG] + score_list[j-1][INDEX_MATH]:
+        if score_list[j][INDEX_FLAVOR] + score_list[j][INDEX_HYGIENE] + score_list[j][INDEX_PRICE] == score_list[j-1][INDEX_FLAVOR] + score_list[j-1][INDEX_HYGIENE] + score_list[j-1][INDEX_PRICE]:
             top_count += 1
 
         else:
@@ -99,12 +138,12 @@ def add_list():
 
     while len(add_list_temp) < len(user_input_list):
         if len(add_list_temp) == 0:
-            user_name = input(user_input_list[len(add_list_temp)])
+            restaurant_name = input(user_input_list[len(add_list_temp)])
 
-            if 1 <= len(user_name) < 20:
-                add_list_temp.append(user_name)
+            if 1 <= len(restaurant_name) < 20:
+                add_list_temp.append(restaurant_name)
 
-            elif len(user_name) == 0:
+            elif len(restaurant_name) == 0:
                 print("The input has errors.")
                 continue
 
@@ -113,7 +152,8 @@ def add_list():
                 print("The input has errors.")
                 continue
         try:
-            subject_score = int(input(user_input_list[len(add_list_temp)]))
+            print("1~5점 사이의 점수를 입력해주세요.")
+            restaurant_score = int(input(user_input_list[len(add_list_temp)]))
 
         except ValueError as e:
             print("The input has errors.")
@@ -121,8 +161,8 @@ def add_list():
                 print(user_input_list[i], add_list_temp[i], sep="")
             continue
 
-        if 0 <= subject_score <= 100:
-            add_list_temp.append(subject_score)
+        if 1 <= restaurant_score <= 5:
+            add_list_temp.append(restaurant_score)
 
         else:
             print("The input has errors.")
@@ -146,12 +186,12 @@ def update_list():
             if 1 <= update_num <= len(score_list):
                 while len(update_list_temp) < len(user_input_list):
                     if len(update_list_temp) == 0:
-                        user_name = input(user_input_list[len(update_list_temp)])
+                        restaurant_name = input(user_input_list[len(update_list_temp)])
 
-                        if 1 <= len(user_name) < 20:
-                            update_list_temp.append(user_name)
+                        if 1 <= len(restaurant_name) < 20:
+                            update_list_temp.append(restaurant_name)
 
-                        elif len(user_name) == 0:
+                        elif len(restaurant_name) == 0:
                             print("The input has errors.")
                             continue
 
@@ -161,7 +201,8 @@ def update_list():
                             continue
 
                     try:
-                        subject_score = int(input(user_input_list[len(update_list_temp)]))
+                        print("1~5점 사이의 점수를 입력해주세요.")
+                        restaurant_score = int(input(user_input_list[len(update_list_temp)]))
 
                     except ValueError:
                         print("The input has errors.")
@@ -169,8 +210,8 @@ def update_list():
                             print(user_input_list[i], update_list_temp[i], sep="")
                         continue
 
-                    if 0 <= subject_score <= 100:
-                        update_list_temp.append(subject_score)
+                    if 1 <= restaurant_score <= 5:
+                        update_list_temp.append(restaurant_score)
 
                     else:
                         print("The input has errors.")
@@ -235,7 +276,7 @@ def load_list():
 
 print_menu()
 while True:
-    if score_list:
+    if len(score_list) >= 2:
         sort_list()
 
     try:
