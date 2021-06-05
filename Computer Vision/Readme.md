@@ -6,5 +6,5 @@
 
 사용 언어 : ```Python```
 
-환경 : python = 3.7.9, numpy:1.19.2, OpenCV:4.5.1.48
+환경 : python=3.7.9, numpy=1.19.2, OpenCV=4.5.1.48
 
