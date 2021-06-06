@@ -10,4 +10,4 @@
 
 Optical Flow.py: 연속된 두 프레임에서 Optical Flow를 구한다.
 
-Mean Shift image segmentation
+Mean Shift Segmentation: Mean Shift를 사용해 Image를 Segmentation한다.
