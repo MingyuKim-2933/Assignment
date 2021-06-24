@@ -7,6 +7,7 @@ import timeit
 src1 = cv2.imread('image6.png', cv2.IMREAD_GRAYSCALE)
 src2 = cv2.imread('image7.png', cv2.IMREAD_GRAYSCALE)
 
+# 파일이 해당 경로에 존재하지 않으면 종료한다.
 if src1 is None or src2 is None:
     print('Image load failed!')
     sys.exit()
